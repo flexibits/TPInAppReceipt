@@ -6,7 +6,7 @@
 //  Copyright © 2017-2021 Pavel Tikhonenko. All rights reserved.
 //
 
-#if os(iOS) || os(tvOS)
+#if os(iOS) || os(tvOS) || os(visionOS)
 import UIKit
 #elseif os(watchOS)
 import UIKit
@@ -287,7 +287,7 @@ fileprivate func guid() -> Data
 #if os(watchOS)
     var uuidBytes = WKInterfaceDevice.current().identifierForVendor!.uuid
     return Data(bytes: &uuidBytes, count: MemoryLayout.size(ofValue: uuidBytes))
-#elseif !targetEnvironment(macCatalyst) && (os(iOS) || os(tvOS))
+#elseif !targetEnvironment(macCatalyst) && (os(iOS) || os(tvOS) || os(visionOS))
     var uuidBytes = UIDevice.current.identifierForVendor!.uuid
     return Data(bytes: &uuidBytes, count: MemoryLayout.size(ofValue: uuidBytes))
 #elseif targetEnvironment(macCatalyst) || os(macOS)
